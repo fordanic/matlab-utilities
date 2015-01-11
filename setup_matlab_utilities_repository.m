@@ -22,5 +22,5 @@ function setup_matlab_utilities_repository()
 %% Compile mex files
 [externalPath,~,~] = fileparts(mfilename('fullpath'));
 
-compile_mex_files([externalPath,filesep,'external',filesep,'interpolation'],...
+compile_mex_files([externalPath,filesep,'external'],...
     'fileExtension','cpp','compilerInstructions','-O');
