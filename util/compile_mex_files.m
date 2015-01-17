@@ -9,6 +9,7 @@ function compile_mex_files(folder,varargin)
 % OPTIONAL INPUT ARGUMENTS
 % 'fileExtension'           - File extension of files to be compiled
 % 'compilerInstructions     - Extra compiler instructions
+% 'filesToExclude'          - A cell-based list with files no to compile
 %
 % OUTPUT ARGUMENTS
 % N/A
@@ -32,6 +33,7 @@ function compile_mex_files(folder,varargin)
 % Set default parameters
 fileExtension = 'c';
 compilerInstructions = '';
+filesToExclude = {};
 
 % Overwrites default parameter
 for k=1:2:length(varargin)
@@ -47,11 +49,14 @@ fprintf('Compiling mex-files in %s\n',pwd);
 %% MAKE ALL
 sourceFiles = dir(['*.',fileExtension]);
 
-for k = 1 : length( sourceFiles )
+for k = 1 : length(sourceFiles)
     
     % Extract name
     sourceFile = sourceFiles(k);
     sourceFileName = sourceFile.name;
+    if sum(strcmpi(sourceFileName,filesToExclude)) > 0
+        continue;
+    end
     
     % Extract corresponding mexfile
     mexFilename = sprintf( '%s%s', sourceFileName(1:end-length(fileExtension)),mexext);

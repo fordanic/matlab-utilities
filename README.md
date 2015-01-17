@@ -30,12 +30,8 @@ the GNU GENERAL PUBLIC LICENSE Version 3, if not otherwise stated.
 To use the code available in this repository, add the following 
 lines to your startup.m file.
 
-currentPath = pwd;
-repositoryPath = <your path to where you keep the repository>;
-cd(repositoryPath);
-addpath_recurse();
-cd(currentPath);
-clear currentPath repositoryPath
+addpath('<your path to where you keep the repository>');
+addpath_recurse('<your path to where you keep the repository>');
 
 setup_matlab_utilities_repository();
 
@@ -56,7 +52,7 @@ make regular use of. Some of them can be found on MATLAB FileExchange.
 
 io - This folder contains code for input/output (read/write)
 
-signal_processing - This folder contains functions related to processing 
+signal-processing - This folder contains functions related to processing 
 of scalar valued data, this includes code for 1D-4D data
 
 util - This folder contains various utility functions
