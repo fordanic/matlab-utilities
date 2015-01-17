@@ -47,6 +47,8 @@ the startup.m file.
 This section provides a brief overview of the content in the 
 different folders
 
+dicom - This folder contains code for processing of dicom files.
+
 external - This folder contains code from external sources that I
 make regular use of. Some of them can be found on MATLAB FileExchange.
 
