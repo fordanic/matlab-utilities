@@ -1,4 +1,4 @@
-function outImage  = averaging2d(image, certaintyImage, filterSize, sigma)
+function outImage  = averaging2d(image, var1, var2, var3)
 % AVERAGING2D Averaging of a 2D image using sequentional normalized convolution.
 %
 % function outImage  = averaging2d(image, certaintyImage, filterSize, sigma)

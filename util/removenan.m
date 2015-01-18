@@ -13,7 +13,7 @@ function [output] = removenan(input)
 % Output	- No containing nans
 
 % Copyright (c) 2012 Daniel Forsberg
-danne.forsberg@outlook.com
+% danne.forsberg@outlook.com
 %
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
