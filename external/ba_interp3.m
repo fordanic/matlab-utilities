@@ -22,5 +22,24 @@ function Z = ba_interp3(F, X, Y, Z, method)
 % (c) 2008 Brian Amberg
 % http://www.brian-amberg.de/
 
-  error('ERROR: The mex file was not compiled. Use  $ mex -O ba_interp3.cpp      to compile it');
+folder = fileparts(mfilename('fullpath'));
+currentFolder = pwd;
+cd(folder)
+
+disp('It appears as if ba_interp3.cpp has not been compiled.')
+if ~exist('ba_interp3.cpp','file')
+    answer = input('ba_interp3.cpp is not available. Download? [y]/[n] ','s');
+    if strcmpi(answer,'y') || strcmpi(answer,'yes')
+        urlwrite(...
+            'https://raw.githubusercontent.com/fordanic/matlab-utilities/master/external/ba_interp3.cpp',...
+            'ba_interp3.cpp');
+    end
 end
+disp('Attempting to compile ba_interp3.cpp')
+try
+    mex -O ba_interp3.cpp
+catch
+    disp('Compilation of ba_interp3.cpp failed.')
+    disp('Make sure that a compiler has been set using mex setup.')
+end
+cd(currentFolder)
