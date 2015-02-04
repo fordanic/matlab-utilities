@@ -53,7 +53,7 @@ folder = fileparts(mfilename('fullpath'));
 currentFolder = pwd;
 cd(folder)
 
-disp('It appears as if ba_interp3.cpp has not been compiled.')
+disp('It appears as if ba_interp2.cpp has not been compiled.')
 if ~exist('ba_interp2.cpp','file')
     answer = input('ba_interp2.cpp is not available. Download? [y]/[n] ','s');
     if strcmpi(answer,'y') || strcmpi(answer,'yes')
