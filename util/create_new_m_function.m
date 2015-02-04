@@ -1,4 +1,4 @@
-matlfunction create_new_m_function(functionName)
+function create_new_m_function(functionName)
 % CREATE_NEW_M_FUNCTION Creates a new m-file with proper help layout
 %
 % create_new_m_function(functionName)
