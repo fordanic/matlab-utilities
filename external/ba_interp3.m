@@ -43,3 +43,5 @@ catch
     disp('Make sure that a compiler has been set using mex setup.')
 end
 cd(currentFolder)
+
+Z = ba_interp3(F, X, Y, Z, method);
