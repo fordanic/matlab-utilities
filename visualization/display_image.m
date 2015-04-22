@@ -55,6 +55,7 @@ switch ndims(im)
         im = im.^gamma;
         imshow(im,'InitialMagnification',100,'Border','tight')
         drawnow
+        pause(0.01)
         figure_title(title)
     case 3
         if size(im,3) == 3
@@ -62,6 +63,7 @@ switch ndims(im)
             figure(figNo)
             imshow(im,'InitialMagnification',100,'Border','tight')
             drawnow
+            pause(0.01)
             figure_title(title)
         else
             % A 3D gray level image. Extract three orthoganal planes
