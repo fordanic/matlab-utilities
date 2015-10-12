@@ -1,21 +1,21 @@
-function [DICE,DICEPerLabel] = compute_DICE_coefficient(labelVolume,groundTruth)
-% COMPUTE_DICE_COEFFICIENT Computes the DICE coefficient for a given label volume and its corresponding ground truth
+function [centroidDistances] = compute_centroid_distances(labelVolume,groundTruth,spacing)
+% COMPUTE_CENTROID_DISTANCES Computes the centroid distances for a given label volume and its corresponding ground truth
 %
-% [DICE,DICEPerLabel] = compute_DICE_coefficient(labelVolume,groundTruth)
+% [centroidDistances] = compute_centroid_distances(labelVolume,groundTruth,spacing)
 %
 % INPUT ARGUMENTS
 % labelVolume                   - Computed label volume, assumes 0 to be
 %                                 background
 % groundTruth                   - Ground truth data
+% spacing                       - Voxel spacing in mm
 %
 % OPTIONAL INPUT ARGUMENTS
 % N/A
 %
 % OUTPUT ARGUMENTS
-% DICE                          - Computed DICE coefficient
-% DICEPerLabel                  - Computed DICE coefficient per label
+% centroidDistances             - Computed centroid distances
 
-% Copyright (c) 2014 Daniel Forsberg
+% Copyright (c) 2015 Daniel Forsberg
 % danne.forsberg@outlook.com 
 % 
 % This program is free software: you can redistribute it and/or modify
@@ -36,21 +36,20 @@ function [DICE,DICEPerLabel] = compute_DICE_coefficient(labelVolume,groundTruth)
 % Extract labels, assumes label = 0 to be background
 labels = unique(vec(groundTruth(groundTruth>0)));
 
-% Initialize numerator and denominator
-numerator = 0;
-denominator = 0;
+centroidDistances = zeros(length(labels),1);
 
-DICEPerLabel = zeros(length(labels),1);
-
-% Add for each label
+% For each label
 for k = 1 : length(labels)
     label = labels(k);
-    num = 2 * sum(labelVolume(:) == label & groundTruth(:) == label);
-    den = sum(labelVolume(:) == label) + sum(groundTruth(:) == label);
-    numerator = numerator + num;
-    denominator = denominator + den;
-    DICEPerLabel(k) = num/den;
+    
+    % Label volume centroid
+    [ly,lx,lz] = ind2sub(size(labelVolume),find(labelVolume(:) == label));
+    labelVolumeCentroid = mean([lx ly lz]).*spacing;
+    
+    % Ground truth centroid
+    [gty,gtx,gtz] = ind2sub(size(groundTruth),find(groundTruth(:) == label));
+    groundTruthCentroid = mean([gtx gty gtz]).*spacing;
+    
+    % Centroid distance
+    centroidDistances(k) = sqrt(sum((labelVolumeCentroid - groundTruthCentroid).^2));
 end
-
-% Compute total DICE
-DICE = numerator / denominator;
