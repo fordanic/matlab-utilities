@@ -66,7 +66,7 @@ disp('Attempting to compile ba_interp2.cpp')
 try
     mex -O ba_interp2.cpp
 catch
-    disp('Compilation of ba_interp3.cpp failed.')
+    disp('Compilation of ba_interp2.cpp failed.')
     disp('Make sure that a compiler has been set using mex setup.')
 end
 cd(currentFolder)
