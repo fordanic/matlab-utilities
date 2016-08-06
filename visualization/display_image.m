@@ -33,6 +33,7 @@ function display_image(im,figNo,title,varargin)
 %% Default parameters
 
 gamma = 1.0;
+initialMagnification = 100;
 
 % Overwrite default values with user supplied values
 for k=1:2:length(varargin)
@@ -53,7 +54,7 @@ switch ndims(im)
         end
         im = im/max(im(:));
         im = im.^gamma;
-        imshow(im,'InitialMagnification',100,'Border','tight')
+        imshow(im,'InitialMagnification',initialMagnification,'Border','tight')
         drawnow
         pause(0.01)
         figure_title(title)
@@ -61,7 +62,7 @@ switch ndims(im)
         if size(im,3) == 3
             % A 2D color image
             figure(figNo)
-            imshow(im,'InitialMagnification',100,'Border','tight')
+            imshow(im,'InitialMagnification',initialMagnification,'Border','tight')
             drawnow
             pause(0.01)
             figure_title(title)
